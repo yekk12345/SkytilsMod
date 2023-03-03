@@ -20,7 +20,6 @@ package gg.skytils.skytilsmod.features.impl.events
 import gg.essential.universal.UChat
 import gg.skytils.skytilsmod.Skytils
 import gg.skytils.skytilsmod.core.GuiManager.createTitle
-import gg.skytils.skytilsmod.core.structure.FloatPair
 import gg.skytils.skytilsmod.core.structure.GuiElement
 import gg.skytils.skytilsmod.features.impl.handlers.MayorInfo
 import gg.skytils.skytilsmod.features.impl.trackers.impl.MayorJerryTracker
@@ -78,7 +77,7 @@ object MayorJerry {
         }
     }
 
-    class JerryPerkGuiElement : GuiElement("Mayor Jerry Perk Display", FloatPair(10, 10)) {
+    class JerryPerkGuiElement : GuiElement("Mayor Jerry Perk Display", pos = 10 to 10) {
         @OptIn(ExperimentalTime::class)
         override fun render() {
             if (Utils.inSkyblock && toggled && MayorInfo.currentMayor == "Jerry") {
@@ -126,7 +125,7 @@ object MayorJerry {
         }
     }
 
-    class JerryTimerGuiElement : GuiElement("Hidden Jerry Timer", FloatPair(10, 10)) {
+    class JerryTimerGuiElement : GuiElement("Hidden Jerry Timer", pos = 10 to 10) {
         private val villagerEgg = ItemStack(Items.spawn_egg, 1, 120)
 
         @OptIn(ExperimentalTime::class)

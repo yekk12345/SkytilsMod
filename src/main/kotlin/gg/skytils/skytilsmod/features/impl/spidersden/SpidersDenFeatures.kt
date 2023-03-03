@@ -20,7 +20,6 @@ package gg.skytils.skytilsmod.features.impl.spidersden
 import gg.essential.universal.UMatrixStack
 import gg.skytils.skytilsmod.Skytils
 import gg.skytils.skytilsmod.Skytils.Companion.mc
-import gg.skytils.skytilsmod.core.structure.FloatPair
 import gg.skytils.skytilsmod.core.structure.GuiElement
 import gg.skytils.skytilsmod.utils.*
 import gg.skytils.skytilsmod.utils.graphics.ScreenRenderer
@@ -76,7 +75,7 @@ object SpidersDenFeatures {
         shouldShowArachneSpawn = false
     }
 
-    class ArachneHPElement : GuiElement("Show Arachne HP", FloatPair(200, 30)) {
+    class ArachneHPElement : GuiElement("Show Arachne HP", pos = 200 to 30) {
         override fun render() {
             val world = mc.theWorld ?: return
             if (toggled && Utils.inSkyblock) {
@@ -92,7 +91,7 @@ object SpidersDenFeatures {
 
         override fun demoRender() {
 
-            val leftAlign = actualX < sr.scaledWidth / 2f
+            val leftAlign = scaleX < sr.scaledWidth / 2f
             val text = "§8[§7Lv500§8] §cArachne §a17.6M§f/§a20M§c❤§r"
             val alignment = if (leftAlign) TextAlignment.LEFT_RIGHT else TextAlignment.RIGHT_LEFT
             ScreenRenderer.fontRenderer.drawString(

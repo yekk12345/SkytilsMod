@@ -23,7 +23,6 @@ import gg.essential.universal.UResolution
 import gg.skytils.skytilsmod.Skytils
 import gg.skytils.skytilsmod.Skytils.Companion.mc
 import gg.skytils.skytilsmod.core.GuiManager
-import gg.skytils.skytilsmod.core.structure.FloatPair
 import gg.skytils.skytilsmod.core.structure.GuiElement
 import gg.skytils.skytilsmod.events.impl.GuiContainerEvent
 import gg.skytils.skytilsmod.events.impl.GuiContainerEvent.SlotClickEvent
@@ -732,14 +731,14 @@ object ItemFeatures {
         }
     }
 
-    class SelectedArrowDisplay : GuiElement("Arrow Swapper Display", FloatPair(0.65f, 0.85f)) {
+    class SelectedArrowDisplay : GuiElement("Arrow Swapper Display", pos = 0.65f to 0.85f) {
         override fun render() {
             if (toggled && Utils.inSkyblock) {
                 val alignment =
-                    if (actualX < UResolution.scaledWidth / 2f) TextAlignment.LEFT_RIGHT else TextAlignment.RIGHT_LEFT
+                    if (scaleX < UResolution.scaledWidth / 2f) TextAlignment.LEFT_RIGHT else TextAlignment.RIGHT_LEFT
                 ScreenRenderer.fontRenderer.drawString(
                     selectedArrow,
-                    if (actualX < UResolution.scaledWidth / 2f) 0f else width.toFloat(),
+                    if (scaleX < UResolution.scaledWidth / 2f) 0f else width.toFloat(),
                     0f,
                     CommonColors.WHITE,
                     alignment,
@@ -750,10 +749,10 @@ object ItemFeatures {
 
         override fun demoRender() {
             val alignment =
-                if (actualX < UResolution.scaledWidth / 2f) TextAlignment.LEFT_RIGHT else TextAlignment.RIGHT_LEFT
+                if (scaleX < UResolution.scaledWidth / 2f) TextAlignment.LEFT_RIGHT else TextAlignment.RIGHT_LEFT
             ScreenRenderer.fontRenderer.drawString(
                 "§aSelected: §rSkytils Arrow",
-                if (actualX < UResolution.scaledWidth / 2f) 0f else width.toFloat(),
+                if (scaleX < UResolution.scaledWidth / 2f) 0f else width.toFloat(),
                 0f,
                 CommonColors.RAINBOW,
                 alignment,
@@ -773,14 +772,14 @@ object ItemFeatures {
         }
     }
 
-    class StackingEnchantDisplay : GuiElement("Stacking Enchant Display", FloatPair(0.65f, 0.85f)) {
+    class StackingEnchantDisplay : GuiElement("Stacking Enchant Display", pos = 0.65f to 0.85f) {
         override fun render() {
             if (toggled && Utils.inSkyblock && stackingEnchantDisplayText.isNotBlank()) {
                 val alignment =
-                    if (actualX < UResolution.scaledWidth / 2f) TextAlignment.LEFT_RIGHT else TextAlignment.RIGHT_LEFT
+                    if (scaleX < UResolution.scaledWidth / 2f) TextAlignment.LEFT_RIGHT else TextAlignment.RIGHT_LEFT
                 ScreenRenderer.fontRenderer.drawString(
                     stackingEnchantDisplayText,
-                    if (actualX < UResolution.scaledWidth / 2f) 0f else width.toFloat(),
+                    if (scaleX < UResolution.scaledWidth / 2f) 0f else width.toFloat(),
                     0f,
                     CommonColors.WHITE,
                     alignment,
@@ -791,10 +790,10 @@ object ItemFeatures {
 
         override fun demoRender() {
             val alignment =
-                if (actualX < UResolution.scaledWidth / 2f) TextAlignment.LEFT_RIGHT else TextAlignment.RIGHT_LEFT
+                if (scaleX < UResolution.scaledWidth / 2f) TextAlignment.LEFT_RIGHT else TextAlignment.RIGHT_LEFT
             ScreenRenderer.fontRenderer.drawString(
                 "Expertise 10: Maxed",
-                if (actualX < UResolution.scaledWidth / 2f) 0f else width.toFloat(),
+                if (scaleX < UResolution.scaledWidth / 2f) 0f else width.toFloat(),
                 0f,
                 CommonColors.RAINBOW,
                 alignment,
@@ -814,14 +813,14 @@ object ItemFeatures {
         }
     }
 
-    class SoulflowGuiElement : GuiElement("Soulflow Display", FloatPair(0.65f, 0.85f)) {
+    class SoulflowGuiElement : GuiElement("Soulflow Display", pos = 0.65f to 0.85f) {
         override fun render() {
             if (Utils.inSkyblock && toggled) {
                 val alignment =
-                    if (actualX < UResolution.scaledWidth / 2f) TextAlignment.LEFT_RIGHT else TextAlignment.RIGHT_LEFT
+                    if (scaleX < UResolution.scaledWidth / 2f) TextAlignment.LEFT_RIGHT else TextAlignment.RIGHT_LEFT
                 ScreenRenderer.fontRenderer.drawString(
                     soulflowAmount,
-                    if (actualX < UResolution.scaledWidth / 2f) 0f else width.toFloat(),
+                    if (scaleX < UResolution.scaledWidth / 2f) 0f else width.toFloat(),
                     0f,
                     CommonColors.WHITE,
                     alignment,
@@ -832,10 +831,10 @@ object ItemFeatures {
 
         override fun demoRender() {
             val alignment =
-                if (actualX < UResolution.scaledWidth / 2f) TextAlignment.LEFT_RIGHT else TextAlignment.RIGHT_LEFT
+                if (scaleX < UResolution.scaledWidth / 2f) TextAlignment.LEFT_RIGHT else TextAlignment.RIGHT_LEFT
             ScreenRenderer.fontRenderer.drawString(
                 "§3100⸎ Soulflow",
-                if (actualX < UResolution.scaledWidth / 2f) 0f else width.toFloat(),
+                if (scaleX < UResolution.scaledWidth / 2f) 0f else width.toFloat(),
                 0f,
                 CommonColors.WHITE,
                 alignment,
@@ -856,17 +855,17 @@ object ItemFeatures {
     }
 
 
-    class WitherShieldDisplay : GuiElement("Wither Shield Display", FloatPair(0.65f, 0.85f)) {
+    class WitherShieldDisplay : GuiElement("Wither Shield Display", pos = 0.65f to 0.85f) {
         override fun render() {
             if (toggled && Utils.inSkyblock) {
                 val alignment =
-                    if (actualX < UResolution.scaledWidth / 2f) TextAlignment.LEFT_RIGHT else TextAlignment.RIGHT_LEFT
+                    if (scaleX < UResolution.scaledWidth / 2f) TextAlignment.LEFT_RIGHT else TextAlignment.RIGHT_LEFT
                 if (lastShieldUse != -1L) {
                     val diff =
                         ((lastShieldUse + (if (Skytils.config.assumeWitherImpact) 5000 else 10000) - System.currentTimeMillis()) / 1000f)
                     ScreenRenderer.fontRenderer.drawString(
                         "Shield: §c${"%.2f".format(diff)}s",
-                        if (actualX < UResolution.scaledWidth / 2f) 0f else width.toFloat(),
+                        if (scaleX < UResolution.scaledWidth / 2f) 0f else width.toFloat(),
                         0f,
                         CommonColors.ORANGE,
                         alignment,
@@ -876,7 +875,7 @@ object ItemFeatures {
                 } else {
                     ScreenRenderer.fontRenderer.drawString(
                         "Shield: §aREADY",
-                        if (actualX < UResolution.scaledWidth / 2f) 0f else width.toFloat(),
+                        if (scaleX < UResolution.scaledWidth / 2f) 0f else width.toFloat(),
                         0f,
                         CommonColors.ORANGE,
                         alignment,
@@ -888,10 +887,10 @@ object ItemFeatures {
 
         override fun demoRender() {
             val alignment =
-                if (actualX < UResolution.scaledWidth / 2f) TextAlignment.LEFT_RIGHT else TextAlignment.RIGHT_LEFT
+                if (scaleX < UResolution.scaledWidth / 2f) TextAlignment.LEFT_RIGHT else TextAlignment.RIGHT_LEFT
             ScreenRenderer.fontRenderer.drawString(
                 "§6Shield: §aREADY",
-                if (actualX < UResolution.scaledWidth / 2f) 0f else width.toFloat(),
+                if (scaleX < UResolution.scaledWidth / 2f) 0f else width.toFloat(),
                 0f,
                 CommonColors.WHITE,
                 alignment,
